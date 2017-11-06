@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp" >
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="bgColor"
+        android:text="@string/background_color"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="gridColor"
+        android:text="@string/grid_color"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ch1Color"
+        android:text="@string/ch1_color"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ch2Color"
+        android:text="@string/ch2_color"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="measurementColor"
+        android:text="@string/measurement_color"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="interfaceColor"
+        android:text="@string/interface_color"
+        android:textColor="#FFFFFF" />
+
+    <RadioGroup
+        android:id="@+id/grpPointsOnView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <RadioButton
+            android:id="@+id/p256"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="p256"
+            android:text="@string/_256_points_on_display"
+            android:textColor="#FFFFFF" >
+        </RadioButton>
+
+        <RadioButton
+            android:id="@+id/p512"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="p512"
+            android:text="@string/_512_points_on_display"
+            android:textColor="#FFFFFF" >
+        </RadioButton>
+
+        <RadioButton
+            android:id="@+id/p1024"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="p1024"
+            android:text="@string/_1024_points_on_display"
+            android:textColor="#FFFFFF" >
+        </RadioButton>
+
+        <RadioButton
+            android:id="@+id/p2048"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="p2048"
+            android:text="@string/_2048_points_on_display"
+            android:textColor="#FFFFFF" >
+        </RadioButton>
+
+        <RadioButton
+            android:id="@+id/p4096"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="p4096"
+            android:text="@string/_4096_points_on_display"
+            android:textColor="#FFFFFF" >
+        </RadioButton>
+    </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/chkShowCh1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showCh1"
+        android:text="@string/show_channel_1"
+        android:textColor="@android:color/white" />
+
+    <CheckBox
+        android:id="@+id/chkShowCh2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showCh2"
+        android:text="@string/show_channel_2"
+        android:textColor="@android:color/white" />
+
+    <CheckBox
+        android:id="@+id/chkShowClipingCh1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showClippingCh1"
+        android:text="@string/show_clipping_of_channel_1"
+        android:textColor="@android:color/white" />
+
+    <CheckBox
+        android:id="@+id/chkShowClipingCh2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showClippingCh2"
+        android:text="@string/show_clipping_of_channel_2"
+        android:textColor="@android:color/white" />
+
+    <CheckBox
+        android:id="@+id/chkShowBufferPreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showBufferPreview"
+        android:text="@string/show_buffer_preview_usb_only_"
+        android:textColor="@android:color/white" />
+
+    <CheckBox
+        android:id="@+id/chkShowTriggerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showTriggerLabel"
+        android:text="@string/show_handle_labels"
+        android:textColor="@android:color/white" />
+
+    <CheckBox
+        android:id="@+id/chkHardware"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="hardware"
+        android:text="@string/hardware_accelerate_nfor_android_3_1_will_restart_"
+        android:textColor="@android:color/white" />
+
+    <CheckBox
+        android:id="@+id/chkKillService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="killService"
+        android:text="@string/kill_service_when_activity_is_closed_n_will_be_unable_to_reprocess_nsamples_of_the_current_buffer_"
+        android:textColor="@android:color/white" />
+
+    <CheckBox
+        android:id="@+id/chkStopSamplingOnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="stopSamplingOnClose"
+        android:text="@string/stop_sampling_when_activity_is_closed"
+        android:textColor="@android:color/white" />
+
+    <CheckBox
+        android:id="@+id/chkFullscreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="fullscreen"
+        android:text="@string/hide_navigation_bar_android_4_0_"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="closeOptions"
+        android:text="@string/done"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>

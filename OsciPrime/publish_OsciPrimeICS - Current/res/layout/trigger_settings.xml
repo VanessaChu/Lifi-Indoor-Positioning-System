@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp" >
+
+    <RadioGroup
+        android:id="@+id/grp1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:orientation="vertical">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="triggerCH1"
+            android:textColor="#FFFFFF"
+             android:id="@+id/ch1"
+            android:text="@string/trigger_on_ch1" >
+        </RadioButton>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="triggerCH2"
+            android:textColor="#FFFFFF"
+            android:id="@+id/ch2"
+            android:text="@string/trigger_on_ch2" >
+        </RadioButton>
+    </RadioGroup>
+    <RadioGroup
+        android:id="@+id/grp2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="triggerRising"
+            android:textColor="#FFFFFF"
+            android:id="@+id/rising"
+            android:text="@string/trigger_on_rising_edge" >
+        </RadioButton>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="triggerFalling"
+            android:textColor="#FFFFFF"
+            android:id="@+id/falling"
+            android:text="@string/trigger_on_falling_edge" >
+        </RadioButton>
+    </RadioGroup>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="closeOptions"
+        android:text="@string/done"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>

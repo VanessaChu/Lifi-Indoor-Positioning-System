@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp" >
+    <CheckBox
+        android:id="@+id/include_ch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="includeCh1"
+        android:text="@string/include_ch1"
+        android:textColor="#FFFFFF" />
+    <CheckBox
+        android:id="@+id/include_ch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="includeCh2"
+        android:text="@string/include_ch2"
+        android:textColor="#FFFFFF" />
+    <CheckBox
+        android:id="@+id/include_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="includeGrid"
+        android:text="@string/include_grid"
+        android:textColor="#FFFFFF" />
+    <CheckBox
+        android:id="@+id/include_trigger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="includeTrigger"
+        android:text="@string/include_trigger_level"
+        android:textColor="#FFFFFF" />
+    <RadioGroup
+        android:id="@+id/exportWidth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical" >
+        <RadioButton
+            android:id="@+id/chkWidth800"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="width800"
+            android:text="@string/_800px"
+            android:textColor="#FFFFFF" >
+        </RadioButton>
+
+        <RadioButton
+             android:id="@+id/chkWidth1200"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="width1200"
+            android:text="@string/_1200px"
+            android:textColor="#FFFFFF" >
+        </RadioButton>
+
+        <RadioButton
+             android:id="@+id/chkWidth1600"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="width1600"
+            android:text="@string/_1600px"
+            android:textColor="#FFFFFF" >
+        </RadioButton>
+    </RadioGroup>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="screenshot"
+        android:text="@string/export"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="closeOptions"
+        android:text="@string/done"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>

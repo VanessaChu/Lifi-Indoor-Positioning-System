@@ -1,0 +1,127 @@
+/**
+  * This file is part of OsciPrime
+  *
+  * Copyright (C) 2011 - Manuel Di Cerbo, Andreas Rudolf
+  * 
+  * Nexus-Computing GmbH, Switzerland 2011
+  *
+  * OsciPrime is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation; either version 2 of the License, or
+  * (at your option) any later version.
+  *
+  * OsciPrime is distributed in the hope that it will be useful,
+  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  * GNU General Public License for more details.
+  *
+  * You should have received a copy of the GNU General Public License
+  * along with OsciPrime; if not, write to the Free Software
+  * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+  * Boston, MA  02110-1301  USA
+  */
+package ch.serverbox.android.osciprime;
+
+import ch.serverbox.android.osciprime.sources.SourceConfiguration;
+import ch.serverbox.android.osciprime.sources.TriggerProcessor;
+
+//TODO Link & update preferences as needed
+public class OsciTransformer {
+
+	private SourceConfiguration mConfiguration;
+	private OsciPreferences mPreferences;
+	private static OsciTransformer sOsciTransformer = null;
+	private int mOffset = OPC.PROGRESS_MAX / 2;
+	private int mTrigger = OPC.PROGRESS_MAX / 2;
+
+	public OsciTransformer(SourceConfiguration config) {
+		mConfiguration = config;
+	}
+
+
+	public int transformTrigger(int progress, int progressOffset, int channel) {
+		progress = progress - (progressOffset - OPC.PROGRESS_MAX / 2);
+
+		if (mConfiguration.cRange() == SourceConfiguration.RANGE_BYTE) {
+			if (mConfiguration.cSignedNess() == SourceConfiguration.SIGNEDNESS_SIGNED) {
+				return (int) (128 * (progress - (OPC.PROGRESS_MAX / 2.0f)) / OPC.PROGRESS_MAX);
+			} else {
+				//return (int) ( 256 * progress / (float) OPC.PROGRESS_MAX);
+				//TODO 1/2.05f scale factor... => replace with current active scale factor
+				float correction = 1.0f;
+				float calibration_offset_ch1 = 128;
+				float calibration_offset_ch2 = 128;
+				if(mPreferences != null){
+					if(channel == TriggerProcessor.CHANNEL_1){
+						correction = mConfiguration.cGainTrippletsCh1()[mPreferences.getGainCh1Index()].factor;
+						calibration_offset_ch1 = mPreferences.getCalibrationOffsetCh1();
+					}
+					else {
+						correction = mConfiguration.cGainTrippletsCh2()[mPreferences.getGainCh2Index()].factor;
+						calibration_offset_ch2 = mPreferences.getCalibrationOffsetCh2();
+					}
+				}
+				if(channel == TriggerProcessor.CHANNEL_1)
+					return (int) ( 256 * (progress-50) * (1/correction) / (float) OPC.PROGRESS_MAX) + 128 + (int)(calibration_offset_ch1-128);
+				else
+					return (int) ( 256 * (progress-50) * (1/correction) / (float) OPC.PROGRESS_MAX) + 128 + (int)(calibration_offset_ch2-128);
+
+			}
+		} else {
+			if (mConfiguration.cSignedNess() == SourceConfiguration.SIGNEDNESS_SIGNED) {
+				float correction = 1.0f;
+				float calibration_offset_ch1 = 0;
+				float calibration_offset_ch2 = 0;
+				if(mPreferences != null){
+					if(channel == TriggerProcessor.CHANNEL_1){
+						correction = mConfiguration.cGainTrippletsCh1()[mPreferences.getGainCh1Index()].factor;
+						calibration_offset_ch1 = mPreferences.getCalibrationOffsetCh1();
+					}
+					else {
+						correction = mConfiguration.cGainTrippletsCh2()[mPreferences.getGainCh2Index()].factor;
+						calibration_offset_ch2 = mPreferences.getCalibrationOffsetCh2();
+					}
+				}
+				if(channel == TriggerProcessor.CHANNEL_1)
+					return (int) (65536 * (progress - (OPC.PROGRESS_MAX / 2.0f)) / OPC.PROGRESS_MAX) + (int)calibration_offset_ch1;
+				else
+					return (int) (65536 * (progress - (OPC.PROGRESS_MAX / 2.0f)) / OPC.PROGRESS_MAX) + (int)calibration_offset_ch2;
+
+			} else {
+				return (int) (65536 * progress / (float) OPC.PROGRESS_MAX);
+			}
+		}
+	}
+
+	public float transformDeltaTime(int dt){
+		return (float)dt/10.0f*mConfiguration.cTimeDivisionPairs()[mPreferences.getInterleaveIndex()].val;
+	}
+
+	public float[] transformDeltaVoltage(int dv){
+		return new float[] {dv/10.0f*mConfiguration.cGainTrippletsCh1()[mPreferences.getGainCh1Index()].val,
+				dv/10.0f*mConfiguration.cGainTrippletsCh2()[mPreferences.getGainCh2Index()].val
+		};
+	}
+
+
+	public static OsciTransformer create(SourceConfiguration config, OsciPreferences preferences) {
+		if (sOsciTransformer == null) {
+			sOsciTransformer = new OsciTransformer(config);
+		}
+		if(config != null){
+			updateConfiguration(config, preferences);
+		}
+		return sOsciTransformer;
+	}
+
+	public static void updateConfiguration(SourceConfiguration config, OsciPreferences preferences){
+		if(sOsciTransformer != null){
+			sOsciTransformer.mConfiguration = config;
+			sOsciTransformer.mPreferences = preferences;
+		}
+	}
+
+	public static OsciTransformer getInstance() {
+		return sOsciTransformer;
+	}
+}

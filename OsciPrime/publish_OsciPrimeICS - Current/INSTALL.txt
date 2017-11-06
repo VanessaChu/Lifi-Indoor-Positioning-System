@@ -1,0 +1,6 @@
+OsciPrime Project in Eclipse
+
+In Eclipse:
+1. Create Android project from existing source
+2. Android Tools -> Link support library
+3. done :)

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/news"
+        android:textSize="20dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+    <TextView
+        android:maxWidth="500dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:padding="5dp"
+        android:text="@string/currently_no_news_available_"
+        android:textColor="#FFFFFF" 
+        android:autoLink="web|email"
+        android:textColorLink="@android:color/white"/>
+
+    <TextView 
+        android:id="@+id/link" 
+        android:drawableLeft="@drawable/icon"
+        android:drawablePadding="15dp"
+        android:textColorLink="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:textColor="#FFFFFF"
+		android:padding="15dp"
+        android:autoLink="web|email"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="closeOptions"
+        android:text="@string/done"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>

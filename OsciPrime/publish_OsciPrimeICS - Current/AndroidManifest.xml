@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ch.nexuscomputing.android.osciprimeics"
+    android:versionCode="16"
+    android:versionName="Dagobert" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:name=".OsciPrimeApplication"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" 
+        android:theme="@style/Osci"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true">
+        <activity
+            android:name=".OsciPrimeICSActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".OsciPrimeService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="ch.nexuscomputing.android.osciprimeics.OsciPrimeService" >
+                </action>
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

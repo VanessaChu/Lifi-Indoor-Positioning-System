@@ -1,0 +1,50 @@
+CURRENT
+
+
+19NOV13
++ Improved Graphics performance by removing unecessary layer, should boost!
++ Font size refined to scale better with displays
++ Fixed malbehaving lower bar on 4.4 (Nexus 5)
+
+22NOV12
++ Calibration offset is now calculated with floating point values
+
+31OCT12
++ Fixed Nullpointer in Audio Source
++ Added Buffer Preview and Window
++ USB OsciPrime: Uses double the amount of Y-Space now
++ Added xxhdpi graphics
+
+19OCT12
++ Added debugging Option for manually setting params on the hardware
++ Fixed issue with triggering on falling edge
++ Improved trigger results for low frequencies
++ Fixed notification issue
+
+23AUG12
++ Temporarily disabled attenuation changed when source not running
++ Added a new offset parameter for every attenuation setting
++ Added option to fetch calibration of the USB scope from our webserver
++ Fixed a bug with the network sink where it would hang until client connects
++ Added option for fullscreen mode (experimental)
++ Added option to stop data acquisition when exiting the application
++ Changed the color palette
++ Changed app name to "OsciPrime" only
+
+27JUL12
++ Redone calibration implementation
++ Handles are now more flexible and easier to add
++ Added Holo Dark Style Checkboxes
++ Added Network Sink and Source (experimental)
++ Added Clipping indication (see settings)
++ Fixed default zoom level for other resolutions
++ Added Button to activate probe compensation for USB
++ Externalized some Strings
+
+16JUL12
++ Pressing the Back Button will now close Panels/Dialogs first (thx for the tip Hagen)
++ GL HW Acceleration, sometimes better performance (see Settings)
++ Exporting Screenshots on devices with no ext. storage now possible
++ Engine refined, better performance under the hood
++ News Layout changed, news now fetched from www.osciprime.com
++ Audio CH2 displays now the same buffer as CH1

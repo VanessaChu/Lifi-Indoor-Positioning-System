@@ -1,0 +1,194 @@
+/**
+  * This file is part of OsciPrime
+  *
+  * Copyright (C) 2011 - Manuel Di Cerbo, Andreas Rudolf
+  * 
+  * Nexus-Computing GmbH, Switzerland 2011
+  *
+  * OsciPrime is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation; either version 2 of the License, or
+  * (at your option) any later version.
+  *
+  * OsciPrime is distributed in the hope that it will be useful,
+  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  * GNU General Public License for more details.
+  *
+  * You should have received a copy of the GNU General Public License
+  * along with OsciPrime; if not, write to the Free Software
+  * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+  * Boston, MA  02110-1301  USA
+  */
+package ch.serverbox.android.osciprime.sources;
+
+import java.io.File;
+import java.nio.ByteBuffer;
+
+import android.content.Context;
+import android.hardware.usb.UsbManager;
+import android.os.Handler;
+import android.util.Log;
+import ch.serverbox.android.osciprime.OPC;
+import ch.serverbox.android.osciprime.OsciPreferences;
+import ch.serverbox.android.osciprime.OsciPrime;
+import ch.serverbox.android.osciprime.hw.UsbContinuousInterface;
+
+public class UsbContinuousSource extends SourceBase{
+	public static final byte BM_AMP_CH1 = 0x07;
+	public static final byte BM_AMP_CH2 = 0x38;
+	
+	
+	public static final int NUM_BUFFERS = 4;
+	public static final int NUM_SUBBUFFERS = 25;
+	public static final int MAX_BUFFERSIZE = 16384;//Framework restriction (silly? kind of...)
+	/*
+	 * Dear friends at Google ... WTF! Why do you only mention this restriction on the ADK
+	 * Documentation page and not on the USB-Host Doc page? I mean really, WTF!
+	 * Srsly... 
+	 */
+	
+	
+    private UsbContinuousInterface mUsb;
+    private boolean mPaused = true;
+    private boolean mRunning = false;
+    
+	public UsbContinuousSource(Handler sink, OsciPreferences pref) {
+		super(sink,pref);
+		mUsb = new UsbContinuousInterface(this);
+	}
+
+	@Override
+	public void loop() {
+		UsbManager usbman = (UsbManager) OsciPrime.sAppContext.getSystemService(Context.USB_SERVICE);
+		
+		
+		/*
+		l("loop");
+		if(!(new File("/fifo.hex").exists())){
+			unavailable();
+			return;
+		}
+		mPaused = false;
+	   	if(!mRunning){
+    		new Thread(new Runnable(){
+				@Override
+				public void run() {
+					l("starting to sample");
+					mUsb.start();
+				}
+    		}).start(); 
+    	}
+		initGain(cGainTrippletsCh1()[mPreferences.getGainCh1Index()].cfg, cGainTrippletsCh2()[mPreferences.getGainCh2Index()].cfg);
+   		mRunning = true;
+   		*/	 
+	}
+
+	@Override
+	public void stop() {
+		l("stop");
+		//mPaused = true;
+	}
+
+	@Override
+	public void quit() {
+		l("quit");
+		/*
+		if(mRunning)
+			mUsb.stop();
+		mPaused = true;
+		mRunning = false;
+		*/
+	}
+	
+	public void callback(int[] ch1, int[] ch2){
+		/*
+    	if(mPaused){
+    		return;
+    	}
+    	onNewSamples(ch1, ch2);
+    	*/ 
+	}
+
+	@Override
+	public int cBlocksize() {
+		return 396288/2;
+	}
+
+	@Override
+	public int cSignedNess() {
+		return SIGNEDNESS_UNSIGNED;
+	}
+
+	@Override
+	public int cRange() {
+		return RANGE_BYTE;
+	}
+
+	@Override
+	public GainTripplet[] cGainTrippletsCh1() {//float[] correctionCh1 = new float[] {1.1f,1.16f,1.57f,1.70f,1.73f};
+		return new GainTripplet[]{
+				new GainTripplet((byte)0x3F, "4.0[V]", 0.95625f, 4.0f),
+				new GainTripplet((byte)0x12, "2.0[V]", 0.96875f, 2.0f),
+				new GainTripplet((byte)0x09, "1.0[V]", 1.3235f, 1.0f),
+				new GainTripplet((byte)0x00, "0.5[V]", 1.45f, 0.5f),
+				new GainTripplet((byte)0x1B, "0.25[V]", 1.73f, 0.25f)
+			};
+	}
+	
+	@Override
+	public GainTripplet[] cGainTrippletsCh2() {
+		return new GainTripplet[]{
+				new GainTripplet((byte)0x3F, "4.0[V]", 0.95625f, 4.0f),
+				new GainTripplet((byte)0x12, "2.0[V]", 0.96875f, 2),
+				new GainTripplet((byte)0x09, "1.0[V]", 1.35f, 1),
+				new GainTripplet((byte)0x00, "0.5[V]", 1.45f, .5f),
+				new GainTripplet((byte)0x1B, "0.25[V]", 1.73f, .25f)
+			};
+	}
+
+	@Override
+	public TimeDivisionPair[] cTimeDivisionPairs() {
+		return new TimeDivisionPair[]{
+				new TimeDivisionPair("2.5[us]", 1, 2.5f),
+				new TimeDivisionPair("5[us]", 2, 5),
+				new TimeDivisionPair("10[us]", 4, 10),
+				new TimeDivisionPair("25[us]", 10, 25),
+				new TimeDivisionPair("50[us]", 20, 50),
+				new TimeDivisionPair("100[us]", 40, 100),
+				new TimeDivisionPair("250[us]", 100, 250),
+				new TimeDivisionPair("500[us]", 200, 500),
+				new TimeDivisionPair("1[ms]", 400, 1000),
+		};
+	}
+	
+    private void l(Object s){
+    	Log.d(getClass().getSimpleName(), ">==< "+s.toString()+" >==<");
+    }
+
+	public void callback(ByteBuffer ch1, ByteBuffer ch2) {
+    	if(mPaused){
+    		return;
+    	}
+    	onNewSamples(ch1, ch2); 
+	}
+	
+	public void initGain(byte g1, byte g2){
+		byte mod = g1;
+		byte ch1Cmd = g2;
+		byte v = (byte)(ch1Cmd & ~BM_AMP_CH2);
+		v |= mod & BM_AMP_CH2;
+		sendCommand(v);
+	}
+	
+	@Override
+	public int cSourceId() {
+		return OPC.SOURCE_USB;
+	}
+
+	@Override
+	public void sendCommand(byte cmd) {
+		mUsb.command((char)cmd);
+	}
+
+}

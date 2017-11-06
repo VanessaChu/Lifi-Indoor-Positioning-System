@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp" >
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/toggleHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="toggleBit"
+                android:textColor="#FFFFFF"
+                android:textOff="0"
+                android:textOn="1" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="toggleBit"
+                android:textColor="#FFFFFF"
+                android:textOff="0"
+                android:textOn="1" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="toggleBit"
+                android:textColor="#FFFFFF"
+                android:textOff="0"
+                android:textOn="1" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="toggleBit"
+                android:textColor="#FFFFFF"
+                android:textOff="0"
+                android:textOn="1" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="toggleBit"
+                android:textColor="#FFFFFF"
+                android:textOff="0"
+                android:textOn="1" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="toggleBit"
+                android:textColor="#FFFFFF"
+                android:textOff="0"
+                android:textOn="1" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="toggleBit"
+                android:textColor="#FFFFFF"
+                android:textOff="0"
+                android:textOn="1" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="toggleBit"
+                android:textColor="#FFFFFF"
+                android:textOff="0"
+                android:textOn="1" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="initUsb"
+        android:text="@string/initialize_usb"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="sendI2CCommand"
+        android:text="@string/send_command"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="closeOptions"
+        android:text="@string/done"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>

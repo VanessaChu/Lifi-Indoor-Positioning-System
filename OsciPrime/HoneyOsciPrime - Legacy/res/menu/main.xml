@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/mni_start" android:icon="@drawable/start"
+		android:title="" android:showAsAction="always" />
+
+	<item android:id="@+id/mni_stop" android:icon="@drawable/stop_disabled"
+		android:title="" android:showAsAction="always|withText" enabled="false" />
+	<group>
+		<item android:id="@+id/mni_measure" android:icon="@drawable/measure"
+			android:title="Measure" android:showAsAction="ifRoom" />
+		<item android:id="@+id/mni_offset" android:icon="@drawable/offset"
+			android:title="Offset" android:showAsAction="ifRoom" />
+	</group>
+ 
+	<item android:id="@+id/mni_trigger" android:icon="@drawable/ic_trigger"
+		android:title="TR" android:showAsAction="ifRoom" />
+	<item android:id="@+id/mni_source" android:icon="@drawable/sources"
+		android:title="SRC" android:showAsAction="ifRoom" />
+	<item android:id="@+id/mni_configure" android:icon="@drawable/ic_menu_settings_holo_light"
+		android:title="CFG" android:showAsAction="ifRoom" />
+
+	<item android:id="@+id/mni_callibrate" android:icon="@drawable/calibrate"
+		android:title="CAL" android:showAsAction="ifRoom" />
+</menu>

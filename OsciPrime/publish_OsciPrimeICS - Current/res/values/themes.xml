@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+        <style name="Osci" parent="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" tools:ignore="NewApi">
+        <item name="android:buttonStyle">@style/Button</item>
+        <item name="android:radioButtonStyle">@style/Radio</item>
+        <item name="android:checkboxStyle">@style/CheckBox</item>
+        <item name="android:windowBackground">@null</item>
+	    </style>
+</resources>

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+	</LinearLayout>
+	<FrameLayout android:layout_width="fill_parent"
+		android:layout_height="0px" android:layout_weight="1">
+		<android.opengl.GLSurfaceView
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:id="@+id/mSurfaceView" android:layout_weight="1" />
+
+
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:visibility="visible"
+			android:id="@+id/overlay_display_container">
+			<LinearLayout android:layout_alignParentTop="true"
+				android:layout_alignParentLeft="true" android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:orientation="vertical">
+				<TextView android:layout_width="wrap_content" android:id="@+id/display_ch1"
+					android:layout_height="wrap_content" android:text="CH1: 2.0V" android:textColor="@color/blue"/>
+				<TextView android:layout_width="wrap_content" android:id="@+id/display_ch2"
+					android:layout_height="wrap_content" android:text="CH2: 1.0V" android:textColor="@color/green"/>
+			</LinearLayout>
+
+			<LinearLayout android:layout_alignParentTop="true"
+				android:layout_alignParentRight="true" android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:orientation="vertical">
+				<TextView android:layout_width="wrap_content" android:id="@+id/display_time"
+					android:layout_height="wrap_content" android:text="t: 5[us]" />
+			</LinearLayout>
+
+		</RelativeLayout>
+
+
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:visibility="visible"
+			android:id="@+id/overlay_cursors_container">
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:orientation="vertical"
+				android:layout_alignParentBottom="true"
+				android:layout_alignParentLeft="true">
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/display_dch1" android:text="dCH1:" android:textColor="@color/blue"/>
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/display_dch2" android:text="dCH2:" android:textColor="@color/green"/>
+			</LinearLayout>
+			
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:orientation="vertical"
+				android:layout_alignParentBottom="true"
+				android:layout_alignParentRight="true">
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/display_dt" android:text="dt: " />
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/display_freq" android:text="f: " />
+			</LinearLayout>
+
+			<ch.serverbox.android.osciprime.ui.SeekBarOverlay
+				android:padding="0px" android:id="@+id/overlay_cursors_top"
+				android:thumb="@drawable/thumb_t0" android:tag="top"
+				android:progress="20" android:max="100"
+				android:layout_alignParentTop="true" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:progressDrawable="@drawable/my_seekbar" />
+			<ch.serverbox.android.osciprime.ui.SeekBarOverlay
+				android:padding="0px" android:id="@+id/overlay_cursors_bottom"
+				android:thumb="@drawable/thumb_t1" android:tag="bottom"
+				android:progress="80" android:max="100"
+				android:layout_alignParentTop="true" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:progressDrawable="@drawable/my_seekbar" />
+			<ch.serverbox.android.osciprime.ui.VerticalSeekBarOverlay
+				android:padding="0px" android:id="@+id/overlay_cursors_right"
+				android:thumb="@drawable/thumb_v1" android:tag="right"
+				android:progress="80" android:max="100"
+				android:layout_alignParentTop="true" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:progressDrawable="@drawable/my_seekbar" />
+			<ch.serverbox.android.osciprime.ui.VerticalSeekBarOverlay
+				android:padding="0px" android:id="@+id/overlay_cursors_left"
+				android:thumb="@drawable/thumb_v0" android:tag="left"
+				android:progress="20" android:max="100"
+				android:layout_alignParentTop="true" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:progressDrawable="@drawable/my_seekbar" />
+
+			<ch.serverbox.android.osciprime.ui.OverlayCursors
+				android:clickable="true" android:layout_alignParentTop="true"
+				android:id="@+id/overlay_cursors" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" />
+
+		</RelativeLayout>
+
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:visibility="invisible"
+			android:id="@+id/overlay_channels_container">
+			<ch.serverbox.android.osciprime.ui.SeekBarOverlay
+				android:padding="0px" android:id="@+id/overlay_channels_top"
+				android:thumb="@drawable/thumb_toff" android:tag="top"
+				android:progress="50" android:max="100"
+				android:layout_alignParentTop="true" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:progressDrawable="@drawable/my_seekbar" />
+			<ch.serverbox.android.osciprime.ui.VerticalSeekBarOverlay
+				android:padding="0px" android:id="@+id/overlay_channels_right"
+				android:thumb="@drawable/thumb_ch2" android:tag="right"
+				android:progress="50" android:max="100" android:secondaryProgress="50"
+				android:layout_alignParentTop="true" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:progressDrawable="@drawable/my_seekbar" />
+			<ch.serverbox.android.osciprime.ui.VerticalSeekBarOverlay
+				android:padding="0px" android:id="@+id/overlay_channels_left"
+				android:thumb="@drawable/thumb_ch1" android:tag="left"
+				android:progress="50" android:max="100" android:secondaryProgress="50"
+				android:layout_alignParentTop="true" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:progressDrawable="@drawable/my_seekbar" />
+
+			<ch.serverbox.android.osciprime.ui.OverlayChannels
+				android:clickable="true" android:layout_alignParentTop="true"
+				android:id="@+id/overlay_channels" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" />
+
+		</RelativeLayout>
+
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:visibility="invisible"
+			android:id="@+id/overlay_trigger_container">
+			<ch.serverbox.android.osciprime.ui.SeekBarOverlay
+				android:padding="0px" android:id="@+id/overlay_trigger_top"
+				android:thumb="@drawable/thumb_toff" android:tag="top"
+				android:progress="50" android:max="100"
+				android:layout_alignParentTop="true" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:progressDrawable="@drawable/my_seekbar" />
+			<ch.serverbox.android.osciprime.ui.VerticalSeekBarOverlay
+				android:padding="0px" android:id="@+id/overlay_trigger_right"
+				android:thumb="@drawable/thumb_ch2" android:tag="right"
+				android:progress="50" android:max="100" android:secondaryProgress="50"
+				android:layout_alignParentTop="true" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:progressDrawable="@drawable/my_seekbar" />
+			<ch.serverbox.android.osciprime.ui.VerticalSeekBarOverlay
+				android:padding="0px" android:id="@+id/overlay_trigger_left"
+				android:thumb="@drawable/thumb_ch1" android:tag="left"
+				android:progress="50" android:max="100" android:secondaryProgress="50"
+				android:layout_alignParentTop="true" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:progressDrawable="@drawable/my_seekbar" />
+
+			<ch.serverbox.android.osciprime.ui.OverlayTrigger
+				android:clickable="true" android:layout_alignParentTop="true"
+				android:id="@+id/overlay_trigger" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" />
+
+		</RelativeLayout>
+
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:visibility="invisible"
+			android:id="@+id/overlay_menu">
+
+			<LinearLayout android:id="@+id/menu"
+				android:layout_alignParentBottom="true" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:orientation="horizontal"
+				android:weightSum="7">
+				<Button android:layout_width="fill_parent"
+					android:visibility="invisible" android:layout_height="wrap_content"
+					android:layout_weight="1" android:text="On" android:id="@+id/btOn" />
+				<Button android:layout_width="fill_parent"
+					android:visibility="invisible" android:layout_height="wrap_content"
+					android:layout_weight="1" android:text="Off" android:id="@+id/btOff" />
+				<Button android:layout_width="fill_parent" android:id="@+id/menu_button_channels"
+					android:visibility="invisible" android:layout_height="wrap_content"
+					android:text="CH." android:layout_weight="1" />
+				<Button android:layout_width="fill_parent" android:id="@+id/menu_button_trigger"
+					android:visibility="invisible" android:layout_height="wrap_content"
+					android:text="T" android:layout_weight="1" />
+				<Button android:layout_width="fill_parent" android:id="@+id/menu_button_sources"
+					android:visibility="invisible" android:layout_height="wrap_content"
+					android:text="S" android:layout_weight="1" />
+				<Button android:layout_width="fill_parent" android:id="@+id/menu_button_cursors"
+					android:visibility="invisible" android:layout_height="wrap_content"
+					android:text="CUR." android:layout_weight="1" />
+				<Button android:layout_width="fill_parent" android:id="@+id/menu_button_calibrate"
+					android:visibility="invisible" android:layout_height="wrap_content"
+					android:text="CAL." android:layout_weight="1" />
+			</LinearLayout>
+
+			<LinearLayout android:layout_alignParentTop="true"
+				android:layout_height="fill_parent" android:layout_width="fill_parent"
+				android:layout_above="@id/menu" android:layout_margin="40px">
+				<FrameLayout android:layout_width="fill_parent"
+					android:layout_height="fill_parent" android:id="@+id/advanced"
+					android:visibility="invisible">
+					<ScrollView android:layout_width="fill_parent"
+						android:layout_height="fill_parent" android:visibility="invisible"
+						android:id="@+id/advanced_trigger">
+						<LinearLayout android:layout_width="fill_parent"
+							android:layout_height="fill_parent" android:orientation="vertical"
+							android:background="#88333333" android:padding="20px">
+							<TextView android:layout_width="wrap_content"
+								android:layout_height="wrap_content" android:text="Polarity" />
+							<RadioGroup android:layout_width="wrap_content"
+								android:layout_height="wrap_content" android:id="@+id/trigger_polarity">
+								<RadioButton android:layout_width="wrap_content"
+									android:id="@+id/trigger_rising" android:layout_height="wrap_content"
+									android:text="Rising Edge" />
+								<RadioButton android:layout_width="wrap_content"
+									android:id="@+id/trigger_falling" android:layout_height="wrap_content"
+									android:text="Falling Edge" />
+							</RadioGroup>
+							<TextView android:layout_width="wrap_content"
+								android:layout_height="wrap_content" android:text="Channel" />
+							<RadioGroup android:layout_width="wrap_content"
+								android:layout_height="wrap_content" android:id="@+id/trigger_channel">
+								<RadioButton android:layout_width="wrap_content"
+									android:id="@+id/trigger_channel1" android:layout_height="wrap_content"
+									android:text="CH1" />
+								<RadioButton android:layout_width="wrap_content"
+									android:id="@+id/trigger_channel2" android:layout_height="wrap_content"
+									android:text="CH2" />
+							</RadioGroup>
+						</LinearLayout>
+					</ScrollView>
+					<ScrollView android:layout_width="fill_parent"
+						android:layout_height="fill_parent" android:visibility="invisible"
+						android:id="@+id/advanced_sources">
+						<LinearLayout android:layout_width="fill_parent"
+							android:layout_height="fill_parent" android:orientation="vertical"
+							android:background="#88333333" android:padding="20px">
+							<TextView android:layout_width="wrap_content"
+								android:layout_height="wrap_content" android:text="Source Selection" />
+							<RadioGroup android:layout_width="wrap_content"
+								android:layout_height="wrap_content" android:id="@+id/source_selection">
+								<RadioButton android:layout_width="wrap_content"
+									android:layout_height="wrap_content" android:text="Audio"
+									android:id="@+id/source_audio" />
+								<RadioButton android:layout_width="wrap_content"
+									android:layout_height="wrap_content" android:text="Generator"
+									android:id="@+id/source_generator" />
+								<RadioButton android:layout_width="wrap_content"
+									android:layout_height="wrap_content" android:text="USB"
+									android:id="@+id/source_usb" />
+							</RadioGroup>
+						</LinearLayout>
+					</ScrollView>
+					<ScrollView android:layout_width="fill_parent"
+						android:layout_height="fill_parent" android:visibility="invisible"
+						android:id="@+id/advanced_channels">
+						<LinearLayout android:layout_width="fill_parent"
+							android:layout_height="fill_parent" android:background="#88333333"
+							android:padding="10px" android:orientation="vertical">
+							<LinearLayout android:layout_width="fill_parent"
+								android:layout_height="wrap_content" android:orientation="horizontal"
+								android:weightSum="3">
+								<CheckBox android:id="@+id/checkbox_show_channel1"
+									android:layout_weight="1" android:text="CH1"
+									android:layout_width="fill_parent" android:layout_height="wrap_content" />
+								<CheckBox android:id="@+id/checkbox_show_channel2"
+									android:layout_weight="1" android:text="CH2"
+									android:layout_width="fill_parent" android:layout_height="wrap_content" />
+								<TextView android:layout_width="fill_parent"
+									android:layout_height="wrap_content" android:layout_weight="1"></TextView>
+							</LinearLayout>
+							<LinearLayout android:layout_width="fill_parent"
+								android:layout_height="fill_parent" android:orientation="horizontal"
+								android:padding="20px" android:weightSum="3" android:id="@+id/divisions">
+								<LinearLayout android:layout_width="fill_parent"
+									android:layout_weight="1" android:layout_height="wrap_content"
+									android:orientation="vertical">
+
+								</LinearLayout>
+								<LinearLayout android:layout_width="fill_parent"
+									android:layout_weight="1" android:layout_height="wrap_content"
+									android:orientation="vertical">
+
+								</LinearLayout>
+								<LinearLayout android:layout_width="fill_parent"
+									android:layout_weight="1" android:layout_height="wrap_content"
+									android:orientation="vertical">
+
+								</LinearLayout>
+
+							</LinearLayout>
+						</LinearLayout>
+					</ScrollView>
+				</FrameLayout>
+			</LinearLayout>
+
+
+
+		</RelativeLayout>
+
+	</FrameLayout>
+	<LinearLayout android:layout_height="wrap_content"
+		android:visibility="gone" android:layout_width="fill_parent"
+		android:id="@+id/linearLayout1" android:weightSum="2">
+		<Button android:layout_width="fill_parent" android:id="@+id/menu_button_run"
+			android:visibility="invisible" android:layout_height="wrap_content"
+			android:text="RUN" android:layout_weight="1" />
+	</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp" >
+
+    <RadioGroup
+        android:id="@+id/srcGrp1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RadioButton
+            android:id="@+id/srcAudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="sourceAudio"
+            android:text="@string/audio_input"
+            android:textColor="#FFFFFF" >
+        </RadioButton>
+
+        <RadioButton
+            android:id="@+id/srcUsb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="sourceUsb"
+            android:text="@string/osciprime_usb"
+            android:textColor="#FFFFFF" >
+        </RadioButton>
+
+        <RadioButton
+            android:id="@+id/srcNetwork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="sourceNetwork"
+            android:text="@string/network_source"
+            android:textColor="#FFFFFF" >
+        </RadioButton>
+    </RadioGroup>
+
+    <!-- <Button -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:onClick="configIp" -->
+    <!-- android:text="@string/ip_address" -->
+    <!-- android:textColor="#FFFFFF" -->
+    <!-- android:layout_alignParentRight="true" -->
+    <!-- android:layout_alignBottom="@id/srcNetwork"/> -->
+
+    <CheckBox
+        android:id="@+id/chkProbeCompensation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="probeCompensation"
+        android:text="@string/probe_compensation_for_usb_osciprime"
+        android:textColor="@android:color/white" />
+
+    <CheckBox
+        android:id="@+id/chkNetworkSink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="networkSink"
+        android:text="@string/network_sink"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="fetchCalibration"
+        android:text="@string/fetch_calibration_for_osciprime_online"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="debugUsb"
+        android:text="@string/debug_usb_osciprime"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="closeOptions"
+        android:text="@string/done"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>
